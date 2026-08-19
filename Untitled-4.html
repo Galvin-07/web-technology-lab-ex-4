@@ -1,0 +1,729 @@
+# Online Resume / CV – Advanced CSS3
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Resume - Advanced CSS3</title>
+
+    <style>
+
+        /* -------------------------------
+           GENERAL PAGE STYLING
+        -------------------------------- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eef3f7;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+
+
+        /* -------------------------------
+           1. ROUNDED CORNERS
+           border-radius
+        -------------------------------- */
+        .resume-header {
+            background: linear-gradient(135deg, #173f5f, #20639b);
+            color: white;
+            padding: 35px;
+            text-align: center;
+
+            /* Rounded corners */
+            border-radius: 20px 50px 30px 5px;
+
+            margin-bottom: 25px;
+        }
+
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            margin-bottom: 15px;
+        }
+
+        .resume-header h1 {
+            font-size: 38px;
+            margin-bottom: 5px;
+        }
+
+        .resume-header p {
+            font-size: 18px;
+        }
+
+
+        /* -------------------------------
+           2. BORDER IMAGE
+           border-image
+        -------------------------------- */
+        .resume-section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+
+            border: 15px solid transparent;
+
+            /*
+              Uses a built-in gradient as a fallback
+              and demonstrates border-image.
+            */
+            border-image:
+                linear-gradient(45deg, #20639b, #3caea3, #f6d55c) 1;
+
+            border-radius: 12px;
+        }
+
+
+        /* -------------------------------
+           3. MULTIPLE BACKGROUNDS
+           background-image
+        -------------------------------- */
+        .about-section {
+            background-image:
+                radial-gradient(circle at top right,
+                    rgba(60, 174, 163, 0.25),
+                    transparent 35%),
+                linear-gradient(135deg,
+                    rgba(32, 99, 155, 0.08),
+                    rgba(246, 213, 92, 0.12));
+
+            background-position:
+                right top,
+                left top;
+
+            background-repeat:
+                no-repeat,
+                no-repeat;
+
+            padding: 25px;
+            border-radius: 25px;
+        }
+
+
+        /* -------------------------------
+           4. BACKGROUND SIZE
+           cover / contain
+        -------------------------------- */
+        .skills-section {
+            background-image:
+                url("https://www.transparenttextures.com/patterns/cubes.png");
+
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+
+        /* -------------------------------
+           HEADINGS
+        -------------------------------- */
+        .section-title {
+            color: #173f5f;
+            border-bottom: 3px solid #3caea3;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+
+        /* -------------------------------
+           TWO COLUMN LAYOUT
+        -------------------------------- */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+
+        /* -------------------------------
+           SKILLS
+        -------------------------------- */
+        .skill {
+            margin: 12px 0;
+        }
+
+        .skill-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .skill-bar {
+            height: 12px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-level {
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                #20639b,
+                #3caea3
+            );
+            border-radius: 10px;
+        }
+
+        .html {
+            width: 90%;
+        }
+
+        .css {
+            width: 85%;
+        }
+
+        .python {
+            width: 80%;
+        }
+
+        .java {
+            width: 75%;
+        }
+
+
+        /* -------------------------------
+           EDUCATION / EXPERIENCE TABLE
+           nth-child(odd/even)
+        -------------------------------- */
+        .resume-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .resume-table th,
+        .resume-table td {
+            padding: 13px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        .resume-table th {
+            background: #173f5f;
+            color: white;
+        }
+
+        /* Odd rows */
+        .resume-table tr:nth-child(odd) {
+            background: #f2f2f2;
+        }
+
+        /* Even rows */
+        .resume-table tr:nth-child(even) {
+            background: #dbeeff;
+        }
+
+        /* Hover effect */
+        .resume-table tr:hover {
+            background: #ffd966;
+            cursor: pointer;
+        }
+
+
+        /* -------------------------------
+           6. ADJACENT SIBLING COMBINATOR
+           +
+        -------------------------------- */
+        .project-name {
+            display: block;
+            background: #173f5f;
+            color: white;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .project-image {
+            opacity: 0.2;
+            max-width: 100%;
+            height: 120px;
+            object-fit: cover;
+            display: block;
+            margin-top: 5px;
+
+            transition: opacity 0.4s ease;
+            border-radius: 8px;
+        }
+
+        /*
+          When project-name is hovered,
+          the immediately following project-image
+          becomes fully visible.
+        */
+        .project-name:hover + .project-image {
+            opacity: 1;
+        }
+
+
+        /* -------------------------------
+           5. PSEUDO-CLASSES
+           :focus
+           :required
+           :valid
+           :invalid
+        -------------------------------- */
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 15px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        /* Required fields */
+        .contact-form input:required,
+        .contact-form textarea:required {
+            border-left: 5px solid #20639b;
+        }
+
+        /* Focus */
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border: 3px solid #3caea3;
+            background: #effffc;
+        }
+
+        /* Valid email */
+        .contact-form input[type="email"]:valid {
+            border-color: green;
+            background: #effff0;
+        }
+
+        /* Invalid email */
+        .contact-form input[type="email"]:invalid {
+            border-color: red;
+            background: #fff0f0;
+        }
+
+        .submit-btn {
+            background: #20639b;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-btn:hover {
+            background: #173f5f;
+        }
+
+
+        /* -------------------------------
+           FOOTER
+        -------------------------------- */
+        footer {
+            text-align: center;
+            background: #173f5f;
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            margin-top: 25px;
+        }
+
+
+        /* -------------------------------
+           RESPONSIVE DESIGN
+        -------------------------------- */
+        @media (max-width: 700px) {
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .resume-header h1 {
+                font-size: 28px;
+            }
+
+            .container {
+                width: 95%;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <!-- ============================
+         HEADER
+    ============================== -->
+    <header class="resume-header">
+
+        <!-- Replace with your own image -->
+        <img
+            src="https://via.placeholder.com/130"
+            alt="Profile Photo"
+            class="profile-img"
+        >
+
+        <h1>GALVIN</h1>
+
+        <p>
+            Computer Science Engineering Student
+        </p>
+
+        <p>
+            Web Developer | Python Programmer | UI Designer
+        </p>
+
+    </header>
+
+
+    <!-- ============================
+         ABOUT ME
+    ============================== -->
+    <section class="resume-section about-section">
+
+        <h2 class="section-title">
+            About Me
+        </h2>
+
+        <p>
+            I am a Computer Science Engineering student
+            interested in web development, programming and
+            emerging technologies. I enjoy developing
+            user-friendly websites and solving programming
+            problems using modern technologies.
+        </p>
+
+    </section>
+
+
+    <!-- ============================
+         EDUCATION
+    ============================== -->
+    <section class="resume-section">
+
+        <h2 class="section-title">
+            Education
+        </h2>
+
+        <table class="resume-table">
+
+            <tr>
+                <th>Qualification</th>
+                <th>Institution</th>
+                <th>Year</th>
+                <th>Percentage / CGPA</th>
+            </tr>
+
+            <tr>
+                <td>B.E. Computer Science</td>
+                <td>Your College Name</td>
+                <td>2024 - Present</td>
+                <td>8.5 CGPA</td>
+            </tr>
+
+            <tr>
+                <td>Higher Secondary</td>
+                <td>Your School Name</td>
+                <td>2024</td>
+                <td>90%</td>
+            </tr>
+
+            <tr>
+                <td>SSLC</td>
+                <td>Your School Name</td>
+                <td>2022</td>
+                <td>92%</td>
+            </tr>
+
+        </table>
+
+    </section>
+
+
+    <!-- ============================
+         SKILLS
+    ============================== -->
+    <section class="resume-section skills-section">
+
+        <h2 class="section-title">
+            Technical Skills
+        </h2>
+
+        <div class="skill">
+
+            <div class="skill-name">
+                HTML5
+            </div>
+
+            <div class="skill-bar">
+                <div class="skill-level html"></div>
+            </div>
+
+        </div>
+
+
+        <div class="skill">
+
+            <div class="skill-name">
+                CSS3
+            </div>
+
+            <div class="skill-bar">
+                <div class="skill-level css"></div>
+            </div>
+
+        </div>
+
+
+        <div class="skill">
+
+            <div class="skill-name">
+                Python
+            </div>
+
+            <div class="skill-bar">
+                <div class="skill-level python"></div>
+            </div>
+
+        </div>
+
+
+        <div class="skill">
+
+            <div class="skill-name">
+                Java
+            </div>
+
+            <div class="skill-bar">
+                <div class="skill-level java"></div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ============================
+         EXPERIENCE
+    ============================== -->
+    <section class="resume-section">
+
+        <h2 class="section-title">
+            Experience
+        </h2>
+
+        <table class="resume-table">
+
+            <tr>
+                <th>Role</th>
+                <th>Organization</th>
+                <th>Duration</th>
+            </tr>
+
+            <tr>
+                <td>Web Development Intern</td>
+                <td>ABC Technologies</td>
+                <td>2 Months</td>
+            </tr>
+
+            <tr>
+                <td>Python Intern</td>
+                <td>XYZ Solutions</td>
+                <td>1 Month</td>
+            </tr>
+
+            <tr>
+                <td>Student Developer</td>
+                <td>College Project</td>
+                <td>2025 - Present</td>
+            </tr>
+
+        </table>
+
+    </section>
+
+
+    <!-- ============================
+         PROJECTS
+         Adjacent Sibling Selector
+    ============================== -->
+    <section class="resume-section">
+
+        <h2 class="section-title">
+            Projects
+        </h2>
+
+
+        <span class="project-name">
+            Smart Agriculture System
+        </span>
+
+        <img
+            src="https://via.placeholder.com/500x120?text=Smart+Agriculture+Project"
+            alt="Smart Agriculture Project"
+            class="project-image"
+        >
+
+
+        <span class="project-name">
+            Online Resume Website
+        </span>
+
+        <img
+            src="https://via.placeholder.com/500x120?text=Online+Resume"
+            alt="Online Resume Project"
+            class="project-image"
+        >
+
+
+        <span class="project-name">
+            Student Management System
+        </span>
+
+        <img
+            src="https://via.placeholder.com/500x120?text=Student+Management"
+            alt="Student Management System"
+            class="project-image"
+        >
+
+    </section>
+
+
+    <!-- ============================
+         CONTACT FORM
+         Pseudo Classes
+    ============================== -->
+    <section class="resume-section">
+
+        <h2 class="section-title">
+            Contact Me
+        </h2>
+
+        <form class="contact-form">
+
+            <label>
+                Name
+            </label>
+
+            <input
+                type="text"
+                placeholder="Enter your name"
+                required
+            >
+
+
+            <label>
+                Email
+            </label>
+
+            <input
+                type="email"
+                placeholder="name@example.com"
+                required
+            >
+
+
+            <label>
+                Phone Number
+            </label>
+
+            <input
+                type="tel"
+                placeholder="Enter phone number"
+                required
+            >
+
+
+            <label>
+                Message
+            </label>
+
+            <textarea
+                rows="5"
+                placeholder="Enter your message"
+                required
+            ></textarea>
+
+
+            <button
+                type="submit"
+                class="submit-btn">
+                Send Message
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- ============================
+         FOOTER
+    ============================== -->
+    <footer>
+
+        <p>
+            © 2026 GALVIN | Online Resume / CV
+        </p>
+
+        <p>
+            Email: yourname@email.com |
+            Phone: +91 XXXXX XXXXX
+        </p>
+
+    </footer>
+
+</div>
+
+</body>
+</html>
+```
+
+## Advanced CSS3 features demonstrated
+
+| Topic                      | Where it is used                        |
+| -------------------------- | --------------------------------------- |
+| **Rounded Corners**        | Header, profile image, cards, buttons   |
+| **Border Image**           | Resume section borders                  |
+| **Multiple Backgrounds**   | About Me section                        |
+| **Background Size**        | Skills section using `cover`            |
+| **`:focus`**               | Contact form inputs                     |
+| **`:required`**            | Required form fields                    |
+| **`:valid` / `:invalid`**  | Email field validation                  |
+| **Adjacent sibling `+`**   | Project name → project image reveal     |
+| **`:nth-child(odd/even)`** | Education and experience table striping |
+| **`:hover`**               | Tables, buttons, project names          |
+
+The use of `border-radius` with four values follows the lab's specified clockwise order: **top-left → top-right → bottom-right → bottom-left**.
+
+The project section specifically demonstrates the lab's adjacent-sibling technique: hovering over the first element reveals the immediately following image using `.project-name:hover + .project-image`.
+
+The education and experience tables demonstrate `nth-child(odd)`, `nth-child(even)`, and `:hover`, matching the zebra-striping technique described in your material.
+
+### How to run it
+
+1. Open **VS Code**.
+2. Create a folder named `Online_Resume`.
+3. Create a file named **`index.html`**.
+4. Paste the code above.
+5. Change the name, college, education, skills, projects, email, etc. to your details.
+6. Save the file.
+7. Right-click `index.html` → **Open with Live Server** or open it directly in Chrome.
+
+**Important:** For a college lab submission, I recommend replacing the placeholder profile/project images with your own local images. The original lab material also expects image assets to be kept in the project folder when using image-based CSS effects.
